@@ -1,0 +1,24 @@
+{
+  "name": "banking-s3-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.s3.S3SinkConnector",
+    "tasks.max": "1",
+    "topics.regex": "banking\\.public\\..*",
+    "s3.bucket.name": "cdc-lab-banking-20-2026",
+    "s3.region": "ap-south-1",
+    "topics.dir": "raw_banking_data",
+    "flush.size": "5", 
+    "rotate.interval.ms": "30000", 
+    "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+    "format.class": "io.confluent.connect.s3.format.json.JsonFormat",
+    "schema.compatibility": "NONE",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "partitioner.class": "io.confluent.connect.storage.partitioner.TimeBasedPartitioner",
+    "path.format": "'year'=YYYY/'month'=MM/'day'=DD",
+    "partition.duration.ms": "86400000",
+    "timezone": "UTC",
+    "locale": "en-US",
+    "timestamp.extractor": "Wallclock"
+  }
+}

@@ -1,0 +1,13 @@
+banking_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "<YOUR_SNOWFLAKE_ACCOUNT>"
+      user: "<YOUR_USERNAME>"
+      password: "<YOUR_PASSWORD>"
+      role: ACCOUNTADMIN
+      database: BANKING_DWH
+      warehouse: COMPUTE_WH
+      schema: STAGING
+      threads: 4

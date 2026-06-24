@@ -1,0 +1,14 @@
+name: 'banking_dbt'
+version: '1.0.0'
+config-version: 2
+profile: 'banking_dbt'
+model-paths: ["models"]
+macro-paths: ["macros"]
+target-path: "target"
+models:
+  banking_dbt:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+      +schema: marts

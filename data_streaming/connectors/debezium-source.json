@@ -1,0 +1,17 @@
+{
+  "name": "banking-postgres-source",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "data_eng",
+    "database.password": "mypassword",
+    "database.dbname": "banking_db",
+    "topic.prefix": "banking",
+    "plugin.name": "pgoutput",
+    "table.include.list": "public.branches,public.customers,public.accounts,public.transactions",
+    "publication.autocreate.mode": "filtered",
+    "tombstones.on.delete": "false",
+    "decimal.handling.mode": "double"
+  }
+}

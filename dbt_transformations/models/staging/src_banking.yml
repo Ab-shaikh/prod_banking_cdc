@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: banking_raw
+    database: BANKING_DWH
+    schema: RAW
+    tables:
+      - name: raw_transactions
