@@ -78,11 +78,11 @@ resource "aws_instance" "cdc_lab_ec2" {
     volume_type = "gp3"
   }
 
-  user_data = file("${path.module}/user_data.sh")
-
-  tags = {
-    Name = "Banking-CDC-Prod-Node"
-  }
+ user_data = templatefile("user_data.sh", {
+    sf_acc  = var.snowflake_account
+    sf_user = var.snowflake_user
+    sf_pass = var.snowflake_password
+  })
 }
 
 output "airflow_url" {

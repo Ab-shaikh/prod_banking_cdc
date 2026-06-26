@@ -11,4 +11,4 @@ ALTER TABLE transactions REPLICA IDENTITY FULL;
 INSERT INTO branches (branch_code, city) VALUES ('MUM001', 'Mumbai'), ('DEL001', 'Delhi');
 INSERT INTO customers (first_name, last_name, pan_number, kyc_status) VALUES ('Rahul', 'Sharma', 'ABCDE1234F', 'VERIFIED'), ('Priya', 'Singh', 'VWXYZ9876Q', 'PENDING');
 INSERT INTO accounts (customer_id, branch_id, account_type, balance) VALUES (1, 1, 'SAVINGS', 50000.00), (2, 2, 'CURRENT', 15000.00);
-INSERT INTO transactions (account_id, txn_type, amount, reference_number) VALUES (1, 'CR', 10000.00, 'REF10001'), (1, 'DR', 500.00, 'REF10002'), (2, 'CR', 25000.00, 'REF10003');
+INSERT INTO transactions (account_id, txn_type, amount, reference_number) VALUES (1, 'CR', 1

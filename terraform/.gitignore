@@ -1,0 +1,18 @@
+# Local .terraform directories (Downloaded providers aur plugins)
+**/.terraform/*
+
+# .tfstate files (CRITICAL: Isme AWS aur baaki infrastructure ki details plain text mein hoti hain)
+*.tfstate
+*.tfstate.*
+
+# Variables files (CRITICAL: Isme aapke actual passwords aur secrets hain)
+*.tfvars
+terraform.tfvars
+
+# Terraform crash aur error logs
+crash.log
+crash.*.log
+
+# Ignore OS generated files (macOS/Windows)
+.DS_Store
+Thumbs.db

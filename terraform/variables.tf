@@ -27,3 +27,19 @@ variable "iam_role_name" {
   type        = string
   default     = "s3_access_ec2"
 }
+
+variable "snowflake_account" {
+  description = "Snowflake Account ID"
+  type        = string
+}
+
+variable "snowflake_user" {
+  description = "Snowflake Username"
+  type        = string
+}
+
+variable "snowflake_password" {
+  description = "Snowflake Password"
+  type        = string
+  sensitive   = true  # Yeh console logs mein password hide kar dega
+}
