@@ -9,7 +9,15 @@ usermod -aG docker ubuntu
 # 2. Clone Repository (Yahan Apna Naya Repo URL Daalein)
 cd /home/ubuntu
 git clone https://github.com/Ab-shaikh/prod_banking_cdc.git cdc_project
+
 chown -R ubuntu:ubuntu /home/ubuntu/cdc_project
+echo "Installing AWS CLI..."
+sudo apt-get install -y unzip curl
+curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip -q awscliv2.zip
+sudo ./aws/install
+rm -rf awscliv2.zip aws
+echo "AWS CLI installed successfully!"
 
 # 3. Setup Kafka S3 Plugin
 cd /home/ubuntu/cdc_project/data_streaming
