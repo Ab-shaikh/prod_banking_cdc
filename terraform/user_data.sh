@@ -17,21 +17,13 @@ rm -rf awscliv2.zip aws
 echo "AWS CLI installed successfully!"
 
 # ==========================================
-# 2. Clone Repository
+# 2. Clone Repository & Setup Git
 # ==========================================
 cd /home/ubuntu
 git clone https://github.com/Ab-shaikh/prod_banking_cdc.git cdc_project
-
 chown -R ubuntu:ubuntu /home/ubuntu/cdc_project
-echo "Installing AWS CLI..."
-sudo apt-get install -y unzip curl
-curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip -q awscliv2.zip
-sudo ./aws/install
-rm -rf awscliv2.zip aws
-echo "AWS CLI installed successfully!"
 
-# Yahan add karein aapka Git setup:
+# Configure Git Identity
 sudo -u ubuntu git config --global user.name "Ab-shaikh"
 sudo -u ubuntu git config --global user.email "shaikhabubakar059@gmail.com"
 
@@ -73,8 +65,5 @@ chown ubuntu:ubuntu .env
 sudo -u ubuntu sg docker -c "docker compose build"
 sudo -u ubuntu sg docker -c "docker compose up airflow-init"
 sudo -u ubuntu sg docker -c "docker compose up -d"
-<<<<<<< HEAD
-=======
 
 echo "Setup Complete! Enjoy the Data Pipeline."
->>>>>>> 1a9c0b3 (Final Architecture Setup: Automated Git config, hidden secrets, and clean gitignore)
