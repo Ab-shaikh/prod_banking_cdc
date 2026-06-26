@@ -1,13 +1,12 @@
-banking_dbt:
+banking_dwh:
   target: dev
   outputs:
     dev:
       type: snowflake
-      account: ASWYXEI-QW06929
-      user: admin
-      password: Bablu7020967247
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
       database: BANKING_DWH
       warehouse: COMPUTE_WH
-      schema: STAGING
-      threads: 4
+      schema: RAW
