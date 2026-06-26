@@ -1,0 +1,123 @@
+[2026-06-24T19:00:01.535+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-24T19:00:01.573+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:00:01.579+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:00:01.580+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-24T19:00:01.590+0000] {taskinstance.py:2330} INFO - Executing <Task(SnowflakeOperator): copy_into_raw> on 2026-06-24 18:00:00+00:00
+[2026-06-24T19:00:01.598+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1283) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T19:00:01.599+0000] {standard_task_runner.py:64} INFO - Started process 1286 to run task
+[2026-06-24T19:00:01.598+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'banking_s3_to_marts', 'copy_into_raw', 'scheduled__2026-06-24T18:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/banking_pipeline.py', '--cfg-path', '/tmp/tmpck6y1wnz']
+[2026-06-24T19:00:01.600+0000] {standard_task_runner.py:91} INFO - Job 7: Subtask copy_into_raw
+[2026-06-24T19:00:01.644+0000] {task_command.py:426} INFO - Running <TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [running]> on host 77d7a5eb4c31
+[2026-06-24T19:00:01.682+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/context.py:212 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-06-24T19:00:01.703+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='banking_s3_to_marts' AIRFLOW_CTX_TASK_ID='copy_into_raw' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-24T18:00:00+00:00'
+[2026-06-24T19:00:01.704+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-24T19:00:01.725+0000] {sql.py:282} INFO - Executing: 
+        COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';
+        
+[2026-06-24T19:00:01.734+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:00:01.740+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:00:01.741+0000] {connection.py:408} INFO - Snowflake Connector for Python Version: 3.11.0, Python Version: 3.12.4, Platform: Linux-6.17.0-1017-aws-x86_64-with-glibc2.36
+[2026-06-24T19:00:01.741+0000] {connection.py:1258} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2026-06-24T19:00:02.512+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:00:02.512+0000] {sql.py:495} INFO - Running statement: COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';, parameters: None
+[2026-06-24T19:00:03.218+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:00:03.219+0000] {sql.py:504} INFO - Rows affected: 1
+[2026-06-24T19:00:03.219+0000] {snowflake.py:407} INFO - Rows affected: 1
+[2026-06-24T19:00:03.219+0000] {snowflake.py:408} INFO - Snowflake query id: 01c544f4-000d-cf6b-0000-b109000cf056
+[2026-06-24T19:00:03.364+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:00:03.364+0000] {connection.py:773} INFO - closed
+[2026-06-24T19:00:03.466+0000] {connection.py:779} INFO - No async queries seem to be running, deleting session
+[2026-06-24T19:00:03.571+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-24T19:00:03.589+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=banking_s3_to_marts, task_id=copy_into_raw, run_id=scheduled__2026-06-24T18:00:00+00:00, execution_date=20260624T180000, start_date=20260624T190001, end_date=20260624T190003
+[2026-06-24T19:00:03.617+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-06-24T19:00:03.626+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2026-06-24T19:00:03.635+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T19:00:03.636+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-06-24T19:07:15.118+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-24T19:07:15.150+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:07:15.157+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:07:15.158+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-24T19:07:15.172+0000] {taskinstance.py:2330} INFO - Executing <Task(SnowflakeOperator): copy_into_raw> on 2026-06-24 18:00:00+00:00
+[2026-06-24T19:07:15.197+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1470) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T19:07:15.198+0000] {standard_task_runner.py:64} INFO - Started process 1474 to run task
+[2026-06-24T19:07:15.198+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'banking_s3_to_marts', 'copy_into_raw', 'scheduled__2026-06-24T18:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/banking_pipeline.py', '--cfg-path', '/tmp/tmp4v_mjbfo']
+[2026-06-24T19:07:15.203+0000] {standard_task_runner.py:91} INFO - Job 10: Subtask copy_into_raw
+[2026-06-24T19:07:15.257+0000] {task_command.py:426} INFO - Running <TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [running]> on host 77d7a5eb4c31
+[2026-06-24T19:07:15.315+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/context.py:212 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-06-24T19:07:15.352+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='banking_s3_to_marts' AIRFLOW_CTX_TASK_ID='copy_into_raw' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-24T18:00:00+00:00'
+[2026-06-24T19:07:15.353+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-24T19:07:15.368+0000] {sql.py:282} INFO - Executing: 
+        COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';
+        
+[2026-06-24T19:07:15.381+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:07:15.390+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:07:15.391+0000] {connection.py:408} INFO - Snowflake Connector for Python Version: 3.11.0, Python Version: 3.12.4, Platform: Linux-6.17.0-1017-aws-x86_64-with-glibc2.36
+[2026-06-24T19:07:15.392+0000] {connection.py:1258} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2026-06-24T19:07:15.915+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:07:15.915+0000] {sql.py:495} INFO - Running statement: COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';, parameters: None
+[2026-06-24T19:07:16.421+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:07:16.421+0000] {sql.py:504} INFO - Rows affected: 1
+[2026-06-24T19:07:16.421+0000] {snowflake.py:407} INFO - Rows affected: 1
+[2026-06-24T19:07:16.422+0000] {snowflake.py:408} INFO - Snowflake query id: 01c544fb-000d-ce15-0000-b109000ce08e
+[2026-06-24T19:07:16.566+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:07:16.566+0000] {connection.py:773} INFO - closed
+[2026-06-24T19:07:16.666+0000] {connection.py:779} INFO - No async queries seem to be running, deleting session
+[2026-06-24T19:07:16.770+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-24T19:07:16.796+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=banking_s3_to_marts, task_id=copy_into_raw, run_id=scheduled__2026-06-24T18:00:00+00:00, execution_date=20260624T180000, start_date=20260624T190715, end_date=20260624T190716
+[2026-06-24T19:07:16.820+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-06-24T19:07:16.832+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2026-06-24T19:07:16.844+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T19:07:16.847+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-06-24T19:09:15.898+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-24T19:09:15.936+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:09:15.944+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [queued]>
+[2026-06-24T19:09:15.944+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-24T19:09:15.957+0000] {taskinstance.py:2330} INFO - Executing <Task(SnowflakeOperator): copy_into_raw> on 2026-06-24 18:00:00+00:00
+[2026-06-24T19:09:15.971+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1553) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-24T19:09:15.972+0000] {standard_task_runner.py:64} INFO - Started process 1557 to run task
+[2026-06-24T19:09:15.973+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'banking_s3_to_marts', 'copy_into_raw', 'scheduled__2026-06-24T18:00:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/banking_pipeline.py', '--cfg-path', '/tmp/tmpp5af41ra']
+[2026-06-24T19:09:15.976+0000] {standard_task_runner.py:91} INFO - Job 13: Subtask copy_into_raw
+[2026-06-24T19:09:16.049+0000] {task_command.py:426} INFO - Running <TaskInstance: banking_s3_to_marts.copy_into_raw scheduled__2026-06-24T18:00:00+00:00 [running]> on host 77d7a5eb4c31
+[2026-06-24T19:09:16.111+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/context.py:212 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2026-06-24T19:09:16.144+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='banking_s3_to_marts' AIRFLOW_CTX_TASK_ID='copy_into_raw' AIRFLOW_CTX_EXECUTION_DATE='2026-06-24T18:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-24T18:00:00+00:00'
+[2026-06-24T19:09:16.147+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-24T19:09:16.162+0000] {sql.py:282} INFO - Executing: 
+        COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';
+        
+[2026-06-24T19:09:16.174+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:09:16.182+0000] {base.py:84} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2026-06-24T19:09:16.183+0000] {connection.py:408} INFO - Snowflake Connector for Python Version: 3.11.0, Python Version: 3.12.4, Platform: Linux-6.17.0-1017-aws-x86_64-with-glibc2.36
+[2026-06-24T19:09:16.185+0000] {connection.py:1258} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2026-06-24T19:09:16.958+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:09:16.958+0000] {sql.py:495} INFO - Running statement: COPY INTO BANKING_DWH.RAW.raw_transactions (raw_data)
+        FROM @BANKING_DWH.RAW.raw_stage/raw_banking_data/year=2026/month=06/day=175/
+        FILE_FORMAT = (TYPE = JSON)
+        ON_ERROR = 'CONTINUE';, parameters: None
+[2026-06-24T19:09:17.494+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:09:17.495+0000] {sql.py:504} INFO - Rows affected: 1
+[2026-06-24T19:09:17.495+0000] {snowflake.py:407} INFO - Rows affected: 1
+[2026-06-24T19:09:17.495+0000] {snowflake.py:408} INFO - Snowflake query id: 01c544fd-000d-cf6b-0000-b109000cf062
+[2026-06-24T19:09:17.645+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2026-06-24T19:09:17.646+0000] {connection.py:773} INFO - closed
+[2026-06-24T19:09:17.743+0000] {connection.py:779} INFO - No async queries seem to be running, deleting session
+[2026-06-24T19:09:17.847+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-24T19:09:17.865+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=banking_s3_to_marts, task_id=copy_into_raw, run_id=scheduled__2026-06-24T18:00:00+00:00, execution_date=20260624T180000, start_date=20260624T190915, end_date=20260624T190917
+[2026-06-24T19:09:17.914+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-06-24T19:09:17.925+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1297 AirflowProviderDeprecationWarning: Call to deprecated class SnowflakeOperator. (This class is deprecated. Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`. Also, you can provide `hook_params={'warehouse': <warehouse>, 'database': <database>, 'role': <role>, 'schema': <schema>, 'authenticator': <authenticator>,'session_parameters': <session_parameters>}`.)
+[2026-06-24T19:09:17.937+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-24T19:09:17.940+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,30 @@
+-- back compat for old kwarg name
+  
+  begin;
+    
+        
+            
+            
+            
+            
+        
+    
+
+    
+
+    merge into BANKING_DWH.marts.fct_transactions as DBT_INTERNAL_DEST
+        using BANKING_DWH.marts.fct_transactions__dbt_tmp as DBT_INTERNAL_SOURCE
+        on ((DBT_INTERNAL_SOURCE.transaction_id = DBT_INTERNAL_DEST.transaction_id))
+
+    
+    when matched then update set
+        "TRANSACTION_ID" = DBT_INTERNAL_SOURCE."TRANSACTION_ID","ACCOUNT_ID" = DBT_INTERNAL_SOURCE."ACCOUNT_ID","TRANSACTION_TYPE" = DBT_INTERNAL_SOURCE."TRANSACTION_TYPE","TRANSACTION_AMOUNT" = DBT_INTERNAL_SOURCE."TRANSACTION_AMOUNT","REFERENCE_NUMBER" = DBT_INTERNAL_SOURCE."REFERENCE_NUMBER","TRANSACTION_TIME" = DBT_INTERNAL_SOURCE."TRANSACTION_TIME","CDC_OPERATION" = DBT_INTERNAL_SOURCE."CDC_OPERATION"
+    
+
+    when not matched then insert
+        ("TRANSACTION_ID", "ACCOUNT_ID", "TRANSACTION_TYPE", "TRANSACTION_AMOUNT", "REFERENCE_NUMBER", "TRANSACTION_TIME", "CDC_OPERATION")
+    values
+        ("TRANSACTION_ID", "ACCOUNT_ID", "TRANSACTION_TYPE", "TRANSACTION_AMOUNT", "REFERENCE_NUMBER", "TRANSACTION_TIME", "CDC_OPERATION")
+
+;
+    commit;

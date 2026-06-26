@@ -11,7 +11,7 @@ default_args = {
 with DAG('banking_s3_to_marts', default_args=default_args, schedule_interval='@hourly', catchup=False) as dag:
 
     # Dynamic S3 Path Pruning
-    dynamic_s3_path = "raw_banking_data/year={{ execution_date.year }}/month={{ execution_date.strftime('%m') }}/day={{ execution_date.strftime('%d') }}/"
+    dynamic_s3_path = "raw_banking_data/year={{ execution_date.year }}/month={{ execution_date.strftime('%m') }}/day={{ execution_date.strftime('%j') }}/"
 
     load_raw = SnowflakeOperator(
         task_id='copy_into_raw',

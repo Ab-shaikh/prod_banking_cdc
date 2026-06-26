@@ -1,12 +1,10 @@
-version: '3.8'
-
 x-airflow-common:
   &airflow-common
   build: .
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
@@ -16,19 +14,18 @@ x-airflow-common:
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
-    # Yahan hum dbt folder ko Airflow ke andar map kar rahe hain
     - ../dbt_transformations:/opt/airflow/dbt_transformations
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
-    postgres:
+    postgres-airflow:
       condition: service_healthy
   networks:
     - default
-    - cdc_net # Yeh Airflow ko Kafka/Debezium se jodne ke liye
+    - data_streaming_cdc_net
 
 services:
-  postgres:
+  postgres-airflow:
     image: postgres:13
     environment:
       POSTGRES_USER: airflow
@@ -98,5 +95,5 @@ volumes:
   postgres-db-volume:
 
 networks:
-  cdc_net:
-    external: true # Yeh define karta hai ki network data_streaming banayega
+  data_streaming_cdc_net:
+    external: true

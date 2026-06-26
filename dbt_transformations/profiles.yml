@@ -3,9 +3,9 @@ banking_dbt:
   outputs:
     dev:
       type: snowflake
-      account: "<YOUR_SNOWFLAKE_ACCOUNT>"
-      user: "<YOUR_USERNAME>"
-      password: "<YOUR_PASSWORD>"
+      account: ASWYXEI-QW06929
+      user: admin
+      password: Bablu7020967247
       role: ACCOUNTADMIN
       database: BANKING_DWH
       warehouse: COMPUTE_WH

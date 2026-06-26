@@ -1,0 +1,30 @@
+[2026-06-25T08:00:05.463+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-25T08:00:05.482+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: banking_s3_to_marts.dbt_run_marts scheduled__2026-06-25T07:00:00+00:00 [queued]>
+[2026-06-25T08:00:05.487+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: banking_s3_to_marts.dbt_run_marts scheduled__2026-06-25T07:00:00+00:00 [queued]>
+[2026-06-25T08:00:05.488+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-25T08:00:05.496+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_marts> on 2026-06-25 07:00:00+00:00
+[2026-06-25T08:00:05.503+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=2598) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-25T08:00:05.504+0000] {standard_task_runner.py:64} INFO - Started process 2601 to run task
+[2026-06-25T08:00:05.504+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'banking_s3_to_marts', 'dbt_run_marts', 'scheduled__2026-06-25T07:00:00+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/banking_pipeline.py', '--cfg-path', '/tmp/tmpu1ji_qxw']
+[2026-06-25T08:00:05.506+0000] {standard_task_runner.py:91} INFO - Job 25: Subtask dbt_run_marts
+[2026-06-25T08:00:05.535+0000] {task_command.py:426} INFO - Running <TaskInstance: banking_s3_to_marts.dbt_run_marts scheduled__2026-06-25T07:00:00+00:00 [running]> on host 77d7a5eb4c31
+[2026-06-25T08:00:05.590+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='banking_s3_to_marts' AIRFLOW_CTX_TASK_ID='dbt_run_marts' AIRFLOW_CTX_EXECUTION_DATE='2026-06-25T07:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-25T07:00:00+00:00'
+[2026-06-25T08:00:05.591+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-25T08:00:05.601+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-06-25T08:00:05.601+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt_transformations && dbt run --profiles-dir /opt/***/dbt_transformations']
+[2026-06-25T08:00:05.610+0000] {subprocess.py:86} INFO - Output:
+[2026-06-25T08:00:05.619+0000] {subprocess.py:93} INFO -   dbt-core 2.0.0-alpha.2
+[2026-06-25T08:00:05.620+0000] {subprocess.py:93} INFO -    Loading profiles.yml
+[2026-06-25T08:00:07.181+0000] {subprocess.py:93} INFO -  Succeeded [  0.58s] model STAGING.stg_transactions (view)
+[2026-06-25T08:00:09.451+0000] {subprocess.py:93} INFO -  Succeeded [  2.27s] model marts.fct_transactions (incremental)
+[2026-06-25T08:00:09.591+0000] {subprocess.py:93} INFO - 
+[2026-06-25T08:00:09.592+0000] {subprocess.py:93} INFO - ==================== Execution Summary =====================
+[2026-06-25T08:00:09.592+0000] {subprocess.py:93} INFO - Finished 'run' successfully for target 'dev' [4.0s]
+[2026-06-25T08:00:09.592+0000] {subprocess.py:93} INFO - Processed: 2 models
+[2026-06-25T08:00:09.592+0000] {subprocess.py:93} INFO - Summary: 2 total | 2 success
+[2026-06-25T08:00:09.597+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-06-25T08:00:09.598+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-25T08:00:09.614+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=banking_s3_to_marts, task_id=dbt_run_marts, run_id=scheduled__2026-06-25T07:00:00+00:00, execution_date=20260625T070000, start_date=20260625T080005, end_date=20260625T080009
+[2026-06-25T08:00:09.651+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-06-25T08:00:09.661+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-25T08:00:09.663+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
